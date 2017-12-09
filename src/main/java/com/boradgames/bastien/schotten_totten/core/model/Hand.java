@@ -1,12 +1,12 @@
 package com.boradgames.bastien.schotten_totten.core.model;
 
-import com.boradgames.bastien.schotten_totten.core.exceptions.HandFullException;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
+import com.boradgames.bastien.schotten_totten.core.exceptions.HandFullException;
 
 /**
  * Created by Bastien on 28/11/2016.

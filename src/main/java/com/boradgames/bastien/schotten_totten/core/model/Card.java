@@ -1,8 +1,8 @@
 package com.boradgames.bastien.schotten_totten.core.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 import java.io.Serializable;
+
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 /**
  * Created by Bastien on 28/11/2016.
