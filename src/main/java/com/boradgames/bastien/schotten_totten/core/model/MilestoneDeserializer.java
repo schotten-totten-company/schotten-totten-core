@@ -3,12 +3,12 @@ package com.boradgames.bastien.schotten_totten.core.model;
 import java.io.IOException;
 import java.util.List;
 
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.map.DeserializationContext;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.deser.std.StdDeserializer;
-import org.codehaus.jackson.node.IntNode;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.node.IntNode;
 
 public class MilestoneDeserializer extends StdDeserializer<Milestone> {
 
@@ -23,7 +23,7 @@ public class MilestoneDeserializer extends StdDeserializer<Milestone> {
 	@Override
 	public Milestone deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
 		final JsonNode node = p.getCodec().readTree(p);
-		final int id = ((IntNode) node.get("id")).asInt();
+		final int id = (Integer) ((IntNode) node.get("id")).numberValue();
 		final ObjectMapper mapper = new ObjectMapper();
 		final List<Card> player1Side = mapper.readValue(
 				node.get("player1Side").toString(),

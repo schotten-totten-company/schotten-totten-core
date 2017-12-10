@@ -3,7 +3,6 @@ package com.boardgames.bastien.schotten_totten.core;
 import java.io.IOException;
 import java.util.List;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 
 import com.boradgames.bastien.schotten_totten.core.exceptions.GameCreationException;
@@ -15,6 +14,7 @@ import com.boradgames.bastien.schotten_totten.core.model.Hand;
 import com.boradgames.bastien.schotten_totten.core.model.Milestone;
 import com.boradgames.bastien.schotten_totten.core.model.Player;
 import com.boradgames.bastien.schotten_totten.core.model.PlayingPlayerType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Created by Bastien on 19/11/2017.

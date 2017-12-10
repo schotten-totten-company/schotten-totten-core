@@ -7,11 +7,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.math3.util.CombinatoricsUtils;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 import com.boradgames.bastien.schotten_totten.core.exceptions.MilestoneSideMaxReachedException;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
  * Created by Bastien on 29/11/2016.
