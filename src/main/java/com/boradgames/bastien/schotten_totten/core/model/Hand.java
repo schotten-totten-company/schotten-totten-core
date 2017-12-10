@@ -4,9 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 import com.boradgames.bastien.schotten_totten.core.exceptions.HandFullException;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Created by Bastien on 28/11/2016.
