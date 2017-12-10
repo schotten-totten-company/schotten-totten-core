@@ -26,7 +26,6 @@ public class Milestone implements Serializable {
 
     private final List<Card> player2Side;
 
-    @JsonProperty("firstPlayerToReachMaxCardPerSide")
     private MilestonePlayerType firstPlayerToReachMaxCardPerSide;
 
     private MilestonePlayerType captured;
