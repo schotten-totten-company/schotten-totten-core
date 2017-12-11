@@ -10,8 +10,6 @@ import org.apache.commons.math3.util.CombinatoricsUtils;
 
 import com.boradgames.bastien.schotten_totten.core.exceptions.MilestoneSideMaxReachedException;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
@@ -31,7 +29,7 @@ public class Milestone implements Serializable {
 
     private MilestonePlayerType captured;
 
-    @JsonIgnoreProperties
+    @JsonIgnore
     public final int MAX_CARDS_PER_SIDE = 3;
 
     @JsonIgnore
