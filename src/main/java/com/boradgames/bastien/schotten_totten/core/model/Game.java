@@ -8,6 +8,9 @@ import com.boradgames.bastien.schotten_totten.core.exceptions.EmptyDeckException
 import com.boradgames.bastien.schotten_totten.core.exceptions.GameCreationException;
 import com.boradgames.bastien.schotten_totten.core.exceptions.HandFullException;
 import com.boradgames.bastien.schotten_totten.core.exceptions.NoPlayerException;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by Bastien on 29/11/2016.
@@ -15,14 +18,26 @@ import com.boradgames.bastien.schotten_totten.core.exceptions.NoPlayerException;
 
 public class Game implements Serializable {
 
+	@JsonProperty
     private final GameBoard board;
 
+	@JsonProperty
     private PlayingPlayerType playingPlayerType;
 
+    @JsonProperty
     private final Player player1;
 
+    @JsonProperty
     private final Player player2;
 
+    @JsonCreator
+    private Game(final Player player1, final Player player2, final GameBoard board, final PlayingPlayerType playingPlayerType) {
+    	this.player1 = player1;
+    	this.player2 = player2;
+    	this.playingPlayerType = playingPlayerType;
+    	this.board = board;
+    }
+    
     public Game(final String player1Name, final String player2Name) throws GameCreationException {
 
         board = new GameBoard();
@@ -48,6 +63,7 @@ public class Game implements Serializable {
         return this.playingPlayerType;
     }
 
+    @JsonIgnore
     public void swapPlayingPlayerType() {
         switch (playingPlayerType) {
             case ONE:
@@ -59,6 +75,7 @@ public class Game implements Serializable {
         }
     }
 
+    @JsonIgnore
     public Player getPlayingPlayer() {
         return getPlayer(getPlayingPlayerType());
     }
@@ -71,6 +88,7 @@ public class Game implements Serializable {
         }
     }
 
+    @JsonIgnore
     public Player getWinner() throws NoPlayerException {
         if (playerWinTheGame(player1)) {
             return player1;
@@ -83,6 +101,7 @@ public class Game implements Serializable {
 
     public GameBoard getGameBoard() {return board; }
 
+    @JsonIgnore
     private boolean playerWinTheGame(final Player p) {
 
         final List<Milestone> playCapturedMilestones = new ArrayList<>();
