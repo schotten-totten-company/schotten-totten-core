@@ -15,7 +15,7 @@ public class DeckDeserializer extends StdDeserializer<Deck> {
 		this(null);
 	}
 
-	public DeckDeserializer(Class<Milestone> t) {
+	public DeckDeserializer(Class<Deck> t) {
 		super(t);
 	}
 

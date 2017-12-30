@@ -10,8 +10,6 @@ import org.apache.commons.collections4.Predicate;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 /**
  * Created by Bastien on 29/11/2016.
@@ -23,7 +21,6 @@ public class GameBoard implements Serializable {
     public final int MAX_MILESTONES = 9;
 
 	@JsonProperty
-	@JsonUnwrapped
     private final Deck deck;
 
     @JsonIgnore
@@ -36,8 +33,8 @@ public class GameBoard implements Serializable {
     private Card lastPlayedCard;
 
     @JsonCreator
-    protected GameBoard(final Deck deckCards, final List<Milestone> milestones, final Card lastPlayedCard) {
-    	this.deck = deckCards;
+    protected GameBoard(final Deck deck, final List<Milestone> milestones, final Card lastPlayedCard) {
+    	this.deck = deck;
     	this.milestones = milestones;
     	this.lastPlayedCard = lastPlayedCard;
     }
