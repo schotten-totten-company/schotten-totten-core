@@ -18,11 +18,16 @@ import com.boradgames.bastien.schotten_totten.core.model.PlayingPlayerType;
  * Created by Bastien on 19/10/2017.
  */
 
-public class SimpleGameManager extends AbstractGameManager {
+public class SimpleGameManager implements GameManagerInterface {
 
     protected final Game game;
     protected final String gameUid;
 
+    public SimpleGameManager(final Game game, final String uid) {
+        this.game = game;
+        this.gameUid = uid;
+    }
+    
     public SimpleGameManager(final String player1Name, final String player2Name, final String uid) throws GameCreationException {
         this.game = new Game(player1Name, player2Name);
         this.gameUid = uid;
