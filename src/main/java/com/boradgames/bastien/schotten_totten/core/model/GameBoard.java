@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Predicate;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -20,20 +19,21 @@ public class GameBoard implements Serializable {
 	@JsonIgnore
     public final int MAX_MILESTONES = 9;
 
-	@JsonProperty
+	@JsonProperty("deck")
     private final Deck deck;
 
     @JsonIgnore
     private final List<Card> allTheCards = new ArrayList(new Deck().getDeck());
 
-    @JsonProperty
+    @JsonProperty("milestones")
     private final List<Milestone> milestones;
 
-    @JsonProperty
+    @JsonProperty("lastPlayedCard")
     private Card lastPlayedCard;
 
-    @JsonCreator
-    protected GameBoard(final Deck deck, final List<Milestone> milestones, final Card lastPlayedCard) {
+    protected GameBoard(@JsonProperty("deck")final Deck deck, 
+    						@JsonProperty("milestones")final List<Milestone> milestones, 
+    						@JsonProperty("lastPlayedCard")final Card lastPlayedCard) {
     	this.deck = deck;
     	this.milestones = milestones;
     	this.lastPlayedCard = lastPlayedCard;

@@ -10,13 +10,12 @@ import com.boradgames.bastien.schotten_totten.core.exceptions.EmptyDeckException
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
  * Created by Bastien on 28/11/2016.
  */
 
-@JsonDeserialize(using = DeckDeserializer.class)
+//@JsonDeserialize(using = DeckDeserializer.class)
 public class Deck implements Serializable {
 
 	@JsonProperty("deckCards")
@@ -28,7 +27,7 @@ public class Deck implements Serializable {
 	}
 
 	@JsonCreator
-	protected Deck(final Stack<Card> deckCards) {
+	private Deck(@JsonProperty("deckCards")final Stack<Card> deckCards) {
 		this.deckCards = deckCards;
 	}
 

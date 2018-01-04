@@ -2,13 +2,14 @@ package com.boradgames.bastien.schotten_totten.core.model;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by Bastien on 28/11/2016.
  */
 
-@JsonDeserialize(using = CardDeserializer.class)
+//@JsonDeserialize(using = CardDeserializer.class)
 public class Card implements Serializable {
 
     public enum COLOR {
@@ -42,19 +43,23 @@ public class Card implements Serializable {
         }
     }
 
+    @JsonProperty("number")
     private NUMBER number;
 
+    @JsonProperty("color")
     private COLOR color;
 
-    public Card(final NUMBER n, final COLOR c) {
+    public Card(@JsonProperty("number")final NUMBER n, @JsonProperty("color")final COLOR c) {
         this.number = n;
         this.color = c;
     }
 
+    @JsonIgnore
     public NUMBER getNumber() {
         return number;
     }
 
+    @JsonIgnore
     public COLOR getColor() {
         return color;
     }
