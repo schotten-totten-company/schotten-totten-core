@@ -127,7 +127,11 @@ public class Milestone implements Serializable {
 			if (otherSide.size() == MAX_CARDS_PER_SIDE) {
 				final int otherSideStrength = sideStrength(otherSide);
 				if (sideToCompareStrength == otherSideStrength) {
-					return (playerType.equals(firstPlayerToReachMaxCardPerSide));
+					if (PlayingPlayerType.ONE.equals(playerType)) {
+						return MilestonePlayerType.ONE.equals(firstPlayerToReachMaxCardPerSide);
+					} else {
+						return MilestonePlayerType.TWO.equals(firstPlayerToReachMaxCardPerSide);
+					}	
 				} else {
 					return sideToCompareStrength > otherSideStrength;
 				}
