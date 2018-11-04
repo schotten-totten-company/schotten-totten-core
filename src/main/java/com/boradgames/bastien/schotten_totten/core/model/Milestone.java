@@ -35,7 +35,7 @@ public class Milestone implements Serializable {
 	private MilestonePlayerType captured;
 
 	@JsonIgnore
-	public final int MAX_CARDS_PER_SIDE = 3;
+	public final static int MAX_CARDS_PER_SIDE = 3;
 
 	@JsonIgnore
 	public Milestone(final int id) {
@@ -155,7 +155,7 @@ public class Milestone implements Serializable {
 	}
 
 	@JsonIgnore
-	private int sideStrength(final List<Card> side) {
+	public int sideStrength(final List<Card> side) {
 		if (side.size() != MAX_CARDS_PER_SIDE) {
 			return 0;
 		} else {
