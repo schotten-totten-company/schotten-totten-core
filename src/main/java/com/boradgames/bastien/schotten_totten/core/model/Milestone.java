@@ -139,7 +139,7 @@ public class Milestone implements Serializable {
 				final Iterator<int[]> combinationsIterator =
 						CombinatoricsUtils.combinationsIterator(cardsNotYetPlayed.size(), MAX_CARDS_PER_SIDE - otherSide.size());
 				while(combinationsIterator.hasNext()){
-					final List<Card> newCombination = new ArrayList(otherSide);
+					final List<Card> newCombination = new ArrayList<Card>(otherSide);
 					for (final int index : combinationsIterator.next()) {
 						newCombination.add(cardsNotYetPlayed.get(index));
 					}
@@ -155,15 +155,46 @@ public class Milestone implements Serializable {
 	}
 
 	@JsonIgnore
-	public int sideStrength(final List<Card> side) {
+	public static int sideStrength(final List<Card> side) {
 		if (side.size() != MAX_CARDS_PER_SIDE) {
 			return 0;
 		} else {
-			final List<Integer> numbers = new ArrayList<>();
 			int sum = 0;
-			boolean isFlush = true;
-			boolean is3OfKind = true;
+			final boolean isFlush = isFlush(side);
+			final boolean is3OfKind = is3OfKind(side);
+			final boolean isStraight = isStraight(side);
 
+			for (final Card card : side) {
+				final int n = card.getNumber().ordinal();
+				sum += n;
+			}
+			
+			// return strength
+			if (isStraight && isFlush) {
+				// straight flush
+				return sum + 500;
+			} else if (is3OfKind) {
+				// 3 of a kind
+				return sum + 400;
+			} else if (isFlush) {
+				// flush
+				return sum + 300;
+			} else if (isStraight) {
+				// straight
+				return sum + 200;
+			} else {
+				// wild hand
+				return sum + 100;
+			}
+		}
+	}
+
+	@JsonIgnore
+	public static boolean isFlush(final List<Card> side) {
+		if (side.size() != MAX_CARDS_PER_SIDE) {
+			return false;
+		} else {
+			boolean isFlush = true;
 			// check flush
 			final Card.COLOR firstCardColor = side.get(0).getColor();
 			for (final Card card : side) {
@@ -172,7 +203,16 @@ public class Milestone implements Serializable {
 					break;
 				}
 			}
+			return isFlush;
+		}
+	}
 
+	@JsonIgnore
+	public static boolean is3OfKind(final List<Card> side) {
+		if (side.size() != MAX_CARDS_PER_SIDE) {
+			return false;
+		} else {
+			boolean is3OfKind = true;
 			// check 3 of a kind
 			final Card.NUMBER firstCardNumber = side.get(0).getNumber();
 			for (final Card card : side) {
@@ -181,11 +221,19 @@ public class Milestone implements Serializable {
 					break;
 				}
 			}
+			return is3OfKind;
+		}
+	}
 
+	@JsonIgnore
+	public static boolean isStraight(final List<Card> side) {
+		if (side.size() != MAX_CARDS_PER_SIDE) {
+			return false;
+		} else {
+			final List<Integer> numbers = new ArrayList<>();
 			// check straight
 			for (final Card card : side) {
 				final int n = card.getNumber().ordinal();
-				sum += n;
 				numbers.add(n);
 			}
 			Collections.sort(numbers);
@@ -196,24 +244,7 @@ public class Milestone implements Serializable {
 					break;
 				}
 			}
-
-			// return strength
-					if (isStraight && isFlush) {
-						// straight flush
-						return sum + 500;
-					} else if (is3OfKind) {
-						// 3 of a kind
-						return sum + 400;
-					} else if (isFlush) {
-						// flush
-						return sum + 300;
-					} else if (isStraight) {
-						// straight
-						return sum + 200;
-					} else {
-						// wild hand
-						return sum + 100;
-					}
+			return isStraight;
 		}
 	}
 
