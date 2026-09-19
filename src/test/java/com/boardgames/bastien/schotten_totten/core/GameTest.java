@@ -2,9 +2,9 @@ package com.boardgames.bastien.schotten_totten.core;
 
 import java.util.ArrayList;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.boradgames.bastien.schotten_totten.core.exceptions.EmptyDeckException;
 import com.boradgames.bastien.schotten_totten.core.exceptions.GameCreationException;
@@ -26,7 +26,7 @@ public class GameTest {
 
     private Game testGame;
 
-    @Before
+    @BeforeEach 
     public void before() throws HandFullException, EmptyDeckException, GameCreationException {
         testGame = new Game("p1", "p2");
     }
@@ -41,29 +41,29 @@ public class GameTest {
     	cardsNotYetPlayed.add(new Card(NUMBER.FIVE, COLOR.YELLOW));
     	
         addThreeOfAKind(testGame.getGameBoard().getMilestones().get(0), Card.NUMBER.EIGHT, PlayingPlayerType.ONE);
-        Assert.assertTrue(testGame.getGameBoard().getMilestones().get(0).reclaim(PlayingPlayerType.ONE, cardsNotYetPlayed));
+        Assertions.assertTrue(testGame.getGameBoard().getMilestones().get(0).reclaim(PlayingPlayerType.ONE, cardsNotYetPlayed));
         try {
 			testGame.getWinner();
-			Assert.fail(NoPlayerException.class.getSimpleName() + " should be thrown.");
+			Assertions.fail(NoPlayerException.class.getSimpleName() + " should be thrown.");
 		} catch (NoPlayerException e) {
 			// test ok
 		}
 
         addThreeOfAKind(testGame.getGameBoard().getMilestones().get(1), Card.NUMBER.FIVE, PlayingPlayerType.ONE);
-        Assert.assertTrue(testGame.getGameBoard().getMilestones().get(1).reclaim(PlayingPlayerType.ONE, cardsNotYetPlayed));
+        Assertions.assertTrue(testGame.getGameBoard().getMilestones().get(1).reclaim(PlayingPlayerType.ONE, cardsNotYetPlayed));
         try {
 			testGame.getWinner();
-			Assert.fail(NoPlayerException.class.getSimpleName() + " should be thrown.");
+			Assertions.fail(NoPlayerException.class.getSimpleName() + " should be thrown.");
 		} catch (NoPlayerException e) {
 			// test ok
 		}
 
         addThreeOfAKind(testGame.getGameBoard().getMilestones().get(2), Card.NUMBER.ONE, PlayingPlayerType.ONE);
-        Assert.assertTrue(testGame.getGameBoard().getMilestones().get(2).reclaim(PlayingPlayerType.ONE, cardsNotYetPlayed));
+        Assertions.assertTrue(testGame.getGameBoard().getMilestones().get(2).reclaim(PlayingPlayerType.ONE, cardsNotYetPlayed));
         try {
-			Assert.assertTrue(testGame.getWinner().getPlayerType().equals(PlayingPlayerType.ONE));
+			Assertions.assertTrue(testGame.getWinner().getPlayerType().equals(PlayingPlayerType.ONE));
 		} catch (NoPlayerException e) {
-			Assert.fail(e.getMessage());
+			Assertions.fail(e.getMessage());
 		}
 
     }
@@ -78,38 +78,38 @@ public class GameTest {
     	cardsNotYetPlayed.add(new Card(NUMBER.FIVE, COLOR.YELLOW));
     	
         addThreeOfAKind(testGame.getGameBoard().getMilestones().get(0), Card.NUMBER.EIGHT, PlayingPlayerType.ONE);
-		Assert.assertTrue(testGame.getGameBoard().getMilestones().get(0).reclaim(PlayingPlayerType.ONE, cardsNotYetPlayed));
+		Assertions.assertTrue(testGame.getGameBoard().getMilestones().get(0).reclaim(PlayingPlayerType.ONE, cardsNotYetPlayed));
         try {
 			testGame.getWinner();
-			Assert.fail(NoPlayerException.class.getSimpleName() + " should be thrown.");
+			Assertions.fail(NoPlayerException.class.getSimpleName() + " should be thrown.");
 		} catch (NoPlayerException e) {
 			// test ok
 		}
 
         addThreeOfAKind(testGame.getGameBoard().getMilestones().get(5), Card.NUMBER.ONE, PlayingPlayerType.ONE);
-        Assert.assertTrue(testGame.getGameBoard().getMilestones().get(5).reclaim(PlayingPlayerType.ONE, cardsNotYetPlayed));
+        Assertions.assertTrue(testGame.getGameBoard().getMilestones().get(5).reclaim(PlayingPlayerType.ONE, cardsNotYetPlayed));
         try {
 			testGame.getWinner();
-			Assert.fail(NoPlayerException.class.getSimpleName() + " should be thrown.");
+			Assertions.fail(NoPlayerException.class.getSimpleName() + " should be thrown.");
 		} catch (NoPlayerException e) {
 			// test ok
 		}
 
         addThreeOfAKind(testGame.getGameBoard().getMilestones().get(4), Card.NUMBER.ONE, PlayingPlayerType.ONE);
-        Assert.assertTrue(testGame.getGameBoard().getMilestones().get(4).reclaim(PlayingPlayerType.ONE, cardsNotYetPlayed));
+        Assertions.assertTrue(testGame.getGameBoard().getMilestones().get(4).reclaim(PlayingPlayerType.ONE, cardsNotYetPlayed));
         try {
 			testGame.getWinner();
-			Assert.fail(NoPlayerException.class.getSimpleName() + " should be thrown.");
+			Assertions.fail(NoPlayerException.class.getSimpleName() + " should be thrown.");
 		} catch (NoPlayerException e) {
 			// test ok
 		}
 
         addThreeOfAKind(testGame.getGameBoard().getMilestones().get(6), Card.NUMBER.ONE, PlayingPlayerType.ONE);
-        Assert.assertTrue(testGame.getGameBoard().getMilestones().get(6).reclaim(PlayingPlayerType.ONE, cardsNotYetPlayed));
+        Assertions.assertTrue(testGame.getGameBoard().getMilestones().get(6).reclaim(PlayingPlayerType.ONE, cardsNotYetPlayed));
         try {
-			Assert.assertTrue(testGame.getWinner().getPlayerType().equals(PlayingPlayerType.ONE));
+			Assertions.assertTrue(testGame.getWinner().getPlayerType().equals(PlayingPlayerType.ONE));
 		} catch (NoPlayerException e) {
-			Assert.fail(e.getMessage());
+			Assertions.fail(e.getMessage());
 		}
 
     }

@@ -2,7 +2,7 @@ package com.boardgames.bastien.schotten_totten.core;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.boradgames.bastien.schotten_totten.core.model.Card;
 import com.boradgames.bastien.schotten_totten.core.model.Deck;
